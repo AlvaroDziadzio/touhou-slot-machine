@@ -14,7 +14,9 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ['group-focus'],
+    },
   },
   plugins: [],
 }

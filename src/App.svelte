@@ -2,11 +2,10 @@
 <script>
 import Card from "./Card.svelte";
 
-	let p = 0;
+	let active = false;
 
 	function change() {
-		p += 1;
-		console.log("Bonga")
+		active = !active;
 	}
 
 </script>
@@ -19,15 +18,15 @@ import Card from "./Card.svelte";
 		<button on:click={change} class="p-3 m-4 rounded-xl bg-indigo-700 text-white font-bold">Change</button>
 
 		<div class="max-w-sm mx-auto grid grid-cols-3 place-content-stretch items-center gap-2 sm:gap-6">
-			<Card id={p} type="char" relation="Has a crush on you"/>
-			<Card id={p} type="place" relation="Married to"/>
-			<Card id={p} type="children" relation="Married to"/>
-			<Card id={p} type="species" relation="Married to"/>
-			<Card id={p} type="char" relation="Married to"/>
-			<Card id={p} type="char" relation="Married to"/>
-			<Card id={p} type="char" relation="Married to"/>
-			<Card id={p} type="char" relation="Married to"/>
-			<Card id={p} type="char" relation="Married to"/>
+			<Card {active} type="species" relation="You are a..."/>
+			<Card {active} type="char" relation="Best friend"/>
+			<Card {active} type="char" relation="Hates you"/>
+			<Card {active} type="char" relation="Fist kiss"/>
+			<Card {active} type="char" relation="Has a crush on you"/>
+			<Card {active} type="char" relation="Married to"/>
+			<Card {active} type="place" relation="Honeymoon location"/>
+			<Card {active} type="children" relation="Nº of children"/>
+			<Card {active} type="char" relation="Cocblocked by"/>
 		</div>
 	</div>
 </div>

@@ -1,4 +1,7 @@
 <script>
+
+	import { onDestroy } from "svelte"
+
 	import characters from "./characters.js"
 	import locations from "./locations.js"
 	const children = ["None", "1", "2", "3", "4", "5+"];
@@ -6,10 +9,20 @@
 
 	export let relation;
 	export let type;
-	export let id = 0;
+	export let active = false;
 
 	let data;
 	let size;
+	let id = 0;
+	let interval;
+
+	$: {
+		if (active) {
+			interval = setInterval(() => id = Math.floor(Math.random()*data.length), 50);
+		} else {
+			clearInterval(interval);
+		}
+	}
 
 	$: {
 		switch (type) {
@@ -34,6 +47,8 @@
 				break;
 		}
 	}
+
+	onDestroy(() => clearInterval(interval));
 
 </script>
 

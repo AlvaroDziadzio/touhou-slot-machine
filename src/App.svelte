@@ -3,6 +3,7 @@
 import Card from "./Card.svelte";
 
 	let active = false;
+	let showLabel = false;
 
 	function change() {
 		active = !active;
@@ -32,10 +33,12 @@ import Card from "./Card.svelte";
 		<h1 class="text-3xl md:text-5xl text-center mb-8 outline-none">Touhou Slot Machine</h1>
 		<p class="text-center text-gray-700 mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe reiciendis veniam aspernatur tempora vero. Placeat neque odit quidem soluta, quibusdam accusamus quod. Culpa nobis provident voluptatibus cum voluptates ut minus?</p>
 		<button on:click={change} class="p-3 m-4 rounded-xl bg-indigo-700 text-white font-bold">Change</button>
+		<input id="input-show-label" bind:checked={showLabel} type="checkbox">
+		<label for="input-show-label">Show Labels</label>
 
 		<div class="max-w-sm mx-auto grid grid-cols-3 place-content-stretch items-center gap-2 sm:gap-6">
 			{#each cards as card}
-				<Card {active} {...card}/>
+				<Card {active} {showLabel} {...card}/>
 			{/each}
 		</div>
 	</div>

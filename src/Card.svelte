@@ -10,6 +10,7 @@
 	export let relation;
 	export let type;
 	export let active = false;
+	export let showLabel = false;
 
 	let data, size, id, interval;
 
@@ -55,7 +56,7 @@
 
 	{#if type === "char" || type === "place"}
 		<div style="background-position: -{(id * 120 + (120-size) / 2)}px 0px; height: 120px;" class="{type} bg-cover flex flex-col-reverse">
-			<p class="group-hover:opacity-100 group-focus:opacity-100 opacity-0 transition-opacity duration-200 text-xs text-center p-1 backdrop-filter backdrop-blur-sm bg-white bg-opacity-60">{data[id]}</p>
+			<p class="group-hover:opacity-100 group-focus:opacity-100 {showLabel ? "" : "opacity-0"} transition-opacity duration-200 text-xs text-center p-1 backdrop-filter backdrop-blur-sm bg-white bg-opacity-60">{data[id]}</p>
 		</div>
 
 	{:else}

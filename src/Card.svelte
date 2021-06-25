@@ -2,23 +2,20 @@
 
 	import { onDestroy } from "svelte"
 
-	import characters from "./characters.js"
-	import locations from "./locations.js"
+	import characters from "./info/characters.js"
+	import locations from "./info/locations.js"
+	import species from "./info/species.js"
 	const children = ["None", "1", "2", "3", "4", "5+"];
-	const species = ["Human", "Youkai"];
 
 	export let relation;
 	export let type;
 	export let active = false;
 
-	let data;
-	let size;
-	let id = 0;
-	let interval;
+	let data, size, id, interval;
 
 	$: {
 		if (active) {
-			interval = setInterval(() => id = Math.floor(Math.random()*data.length), 50);
+			interval = setInterval(() => id = Math.floor(Math.random()*data.length), 100);
 		} else {
 			clearInterval(interval);
 		}
@@ -46,6 +43,7 @@
 				data = null;
 				break;
 		}
+		id = Math.floor(Math.random()*data.length);
 	}
 
 	onDestroy(() => clearInterval(interval));
@@ -62,7 +60,7 @@
 
 	{:else}
 		<div style="height: 120px;" class="flex justify-center flex-col">
-			<p class="text-2xl text-center font-light p-2">{data[id]}</p>
+			<p class="text-base text-center font-light p-2">{data[id]}</p>
 		</div>
 
 	{/if}

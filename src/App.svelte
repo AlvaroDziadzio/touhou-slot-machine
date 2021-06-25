@@ -8,7 +8,23 @@ import Card from "./Card.svelte";
 		active = !active;
 	}
 
+	const cards = [
+		{type: "species", relation: "You are a..."},
+		{type: "char", relation: "Best friend"},
+		{type: "char", relation: "Hates you"},
+		{type: "char", relation: "Fist kiss"},
+		{type: "char", relation: "Has a crush on you"},
+		{type: "char", relation: "Married to"},
+		{type: "place", relation: "Honeymoon location"},
+		{type: "children", relation: "Nº of children"},
+		{type: "char", relation: "Cockblocked by"}
+	];
+
 </script>
+
+<svelte:head>
+	<title>Touhou Slot Machine</title>
+</svelte:head>
 
 <div class="min-h-screen bg-gray-100 font-work-sans">
 	<div class="container mx-auto py-8 px-2 sm:px-8">
@@ -18,15 +34,9 @@ import Card from "./Card.svelte";
 		<button on:click={change} class="p-3 m-4 rounded-xl bg-indigo-700 text-white font-bold">Change</button>
 
 		<div class="max-w-sm mx-auto grid grid-cols-3 place-content-stretch items-center gap-2 sm:gap-6">
-			<Card {active} type="species" relation="You are a..."/>
-			<Card {active} type="char" relation="Best friend"/>
-			<Card {active} type="char" relation="Hates you"/>
-			<Card {active} type="char" relation="Fist kiss"/>
-			<Card {active} type="char" relation="Has a crush on you"/>
-			<Card {active} type="char" relation="Married to"/>
-			<Card {active} type="place" relation="Honeymoon location"/>
-			<Card {active} type="children" relation="Nº of children"/>
-			<Card {active} type="char" relation="Cocblocked by"/>
+			{#each cards as card}
+				<Card {active} {...card}/>
+			{/each}
 		</div>
 	</div>
 </div>

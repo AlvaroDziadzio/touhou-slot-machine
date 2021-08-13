@@ -1,25 +1,20 @@
 
 <script>
-import Card from "./Card.svelte";
+	import Card from "./Card.svelte";
+	import {newCards, cards} from "./CardStore"
 
-	let active = false;
 	let showLabel = false;
+	let interval = 0;
 
-	function change() {
-		active = !active;
+	function toggleActive() {
+		if (interval) {
+			clearInterval(interval);
+			interval = 0;
+		} else {
+			interval = setInterval(newCards, 100);
+		}
 	}
-
-	const cards = [
-		{type: "species", relation: "You are a..."},
-		{type: "char", relation: "Best friend"},
-		{type: "char", relation: "Hates you"},
-		{type: "char", relation: "Fist kiss"},
-		{type: "char", relation: "Has a crush on you"},
-		{type: "char", relation: "Married to"},
-		{type: "place", relation: "Honeymoon location"},
-		{type: "children", relation: "Nº of children"},
-		{type: "char", relation: "Cockblocked by"}
-	];
+	
 
 </script>
 
@@ -32,13 +27,13 @@ import Card from "./Card.svelte";
 	
 		<h1 class="text-3xl md:text-5xl text-center mb-8 outline-none">Touhou Slot Machine</h1>
 		<p class="text-center text-gray-700 mb-8">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe reiciendis veniam aspernatur tempora vero. Placeat neque odit quidem soluta, quibusdam accusamus quod. Culpa nobis provident voluptatibus cum voluptates ut minus?</p>
-		<button on:click={change} class="p-3 m-4 rounded-xl bg-indigo-700 text-white font-bold">Change</button>
+		<button on:click={toggleActive} class="p-3 m-4 rounded-xl bg-indigo-700 text-white font-bold">Change</button>
 		<input id="input-show-label" bind:checked={showLabel} type="checkbox">
 		<label for="input-show-label">Show Labels</label>
 
 		<div class="max-w-sm mx-auto grid grid-cols-3 place-content-stretch items-center gap-2 sm:gap-6">
-			{#each cards as card}
-				<Card {active} {showLabel} {...card}/>
+			{#each $cards as card, i}
+				<Card {showLabel} id={i}/>
 			{/each}
 		</div>
 	</div>

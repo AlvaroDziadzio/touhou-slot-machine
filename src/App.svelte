@@ -1,6 +1,6 @@
-
 <script>
 	import Card from "./Card.svelte";
+	import Tailwind from "./Tailwind.svelte";
 	import {newCards, cards} from "./CardStore"
 
 	let showLabel = false;
@@ -18,9 +18,7 @@
 
 </script>
 
-<svelte:head>
-	<title>Touhou Slot Machine</title>
-</svelte:head>
+<Tailwind/>
 
 <div class="min-h-screen bg-gray-100 font-work-sans">
 	<div class="container mx-auto py-8 px-2 sm:px-8">

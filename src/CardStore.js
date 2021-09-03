@@ -10,7 +10,6 @@ const number = {
 };
 
 
-
 const cards = writable([
 	{data: species,    id: 0, label: "You are a..."       },
 	{data: characters, id: 0, label: "Best friend"        },
@@ -32,7 +31,6 @@ function newCards() {
 		return state;
 
 	});
-
 }
 
 export {cards, newCards};
